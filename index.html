@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Costa Azul | Luxury Experience</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%231a1a1a%22 rx=%2220%22/><text y=%22.9em%22 x=%2250%22 text-anchor=%22middle%22 font-family=%22serif%22 font-weight=%22bold%22 font-size=%2260%22 fill=%22white%22>CA</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            --color-primary: #1a1a1a; /* Negro elegante */
+            --color-secondary: #444444; /* Gris oscuro */
+            --color-bg: #f4f4f4; /* Gris muy claro para fondos */
+            --color-white: #ffffff;
+            --font-titles: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 0;
+            color: var(--color-secondary);
+            background-color: var(--color-bg);
+        }
+
+        /* --- NAVEGACIÓN --- */
+        nav {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 1rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        /* Logotipo Inventado */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-family: var(--font-titles);
+        }
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            color: var(--color-primary);
+            border-radius: 50%; /* Círculo */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            letter-spacing: -1px;
+        }
+        nav h1 { 
+            margin: 0; 
+            font-size: 1.6rem; 
+            font-weight: 400; 
+            letter-spacing: 1px;
+        }
+
+        nav ul { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; }
+        nav a { 
+            color: rgba(255,255,255,0.8); 
+            text-decoration: none; 
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: white; }
+
+        /* --- PORTADA (HERO) --- */
+        .hero {
+            /* Filtro oscuro más fuerte para resaltar el blanco */
+            background: url('https://www.aladinia.com/blog/wp-content/uploads/2021/12/hes_374640480.jpg');
+            height: 85vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .hero-content h2 { 
+            font-family: var(--font-titles);
+            font-size: 4rem; 
+            margin-bottom: 20px; 
+            font-style: italic;
+        }
+        .hero-content p { 
+            font-size: 1.3rem; 
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* --- SECCIONES --- */
+        section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        h3 { 
+            text-align: center; 
+            font-family: var(--font-titles);
+            font-size: 2.5rem; 
+            color: var(--color-primary); 
+            margin-bottom: 60px;
+            position: relative;
+        }
+        /* Pequeña línea decorativa debajo del título */
+        h3::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: var(--color-primary);
+            margin: 20px auto 0;
+        }
+
+        /* --- TARJETAS --- */
+        .grid-habitaciones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        .card {
+            background: white;
+            border-radius: 0; /* Bordes rectos más elegantes */
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.4s ease;
+            border: 1px solid #eee;
+        }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 250px; object-fit: cover; filter: grayscale(20%); transition: filter 0.3s; }
+        .card:hover img { filter: grayscale(0%); } /* Vuelve el color al pasar el ratón */
+        
+        .card-body { padding: 30px; text-align: center; }
+        .card-title { font-family: var(--font-titles); font-size: 1.5rem; color: var(--color-primary); margin-bottom: 10px;}
+        .card-price { color: #666; font-weight: 500; font-size: 1.1rem; margin: 15px 0; font-style: italic;}
+        
+        .btn-reservar {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--color-primary); /* Negro */
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+        .btn-reservar:hover { background-color: #333; }
+
+        /* --- SERVICIOS --- */
+        .grid-servicios {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+        .servicio-item { width: 220px; margin-bottom: 40px; padding: 20px; }
+        .servicio-icon { 
+            font-size: 2.5rem; 
+            margin-bottom: 20px; 
+            display: block; 
+            color: var(--color-primary);
+        }
+        .servicio-item h4 { font-family: var(--font-titles); font-size: 1.2rem; margin: 10px 0; }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--color-primary);
+            color: #999;
+            text-align: center;
+            padding: 40px;
+            margin-top: 80px;
+            font-size: 0.9rem;
+        }
+        footer p { margin: 10px 0; }
+    </style>
+</head>
+<body>
+
+<script>
+  window.addEventListener('mouseover', initLandbot, { once: true });
+  window.addEventListener('touchstart', initLandbot, { once: true });
+  var myLandbot;
+  function initLandbot() {
+    if (!myLandbot) {
+      var s = document.createElement('script');
+      s.type = "module"
+      s.async = true;
+      s.addEventListener('load', function() {
+        var myLandbot = new Landbot.Livechat({
+          configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-3290489-FB1692HOAVI7Y04R/index.json',
+        });
+      });
+      s.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs';
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    }
+  }
+</script>
+
+</script>
+        <nav>
+        <div class="logo-container">
+            <div class="logo-icon">🏊‍♂️</div> <h1>Hotel Costa Azul de Málaga</h1>
+        </div>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#habitaciones">Habitaciones</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+        </ul>
+    </nav>
+
+    <div id="inicio" class="hero">
+        <div class="hero-content"></div>
+    </div>
+
+    <section id="habitaciones">
+        <h3>Fliparás con nuestras habitaciones</h3>
+        <div class="grid-habitaciones">
+            
+            <div class="card">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/29/e0/51/d03375-guest-room.jpg?w=900&h=500&s=1" alt="Habitación Estándar">
+                <div class="card-body">
+                    <div class="card-title">Habitación estándar</div>
+                    <p>Ideal para solteros/as o estancias cortas por trabajo.</p>
+                    <div class="card-price">Desde 100€ / noche (aplicación de descuento en discotecas, pubs y VTC's)</div>
+                    <a href="#" class="btn-reservar">Reservar</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/d0/8b/47/barcelo-malaga.jpg?w=1200&h=-1&s=1" alt="Habitación Familiar">
+                <div class="card-body">
+                    <div class="card-title">Habitación familiar</div>
+                    <p>Pensado para familias que no sean numerosas.</p>
+                    <div class="card-price">Desde 160€ / noche  (aplicación de descuento en centro comerciales y actividades infantiles)</div>
+                    <a href="#" class="btn-reservar">Reservar</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/267970029.jpg?k=d5bb8543a19bf8247cc173747e44bd92d18877ed1e456586a530dd32b48c3392&o=" alt="Suite Lujo">
+                <div class="card-body">
+                    <div class="card-title">La joya de la corona</div>
+                    <p>Primera línea y una parcela para uso exclusivo de la suite.</p>
+                    <div class="card-price">Desde 300€ / noche (aplicación de descuento para lo que se requiera)</div>
+                    <a href="#" class="btn-reservar">Reservar</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="servicios" style="background-color: white;">
+        <h3>Espérate, que tengo un comodín más</h3>
+        <div class="grid-servicios">
+            <div class="servicio-item">
+                <span class="servicio-icon">🏊‍♂️</span>
+                <h4>Piscina con techo retráctil</h4>
+                <p>Climatizada todo el año y con agua tratada con sales naturales.</p>
+            </div>
+            <div class="servicio-item">
+                <span class="servicio-icon">🧖‍♀️</span>
+                <h4>Spa y cuidado para la piel</h4>
+                <p>Tratamientos orgánicos basada en la ciencia de la salud.</p>
+            </div>
+            <div class="servicio-item">
+                <span class="servicio-icon">🍽️</span>
+                <h4>Buffet libre de los cinco continentes</h4>
+                <p>Cocina con platos variados y sin límite las 24 horas.</p>
+            </div>
+            <div class="servicio-item">
+                <span class="servicio-icon">🅿️</span>
+                <h4>Parking cubierto y equipado </h4>
+                <p>Plazas para personas con discapacidad y enchufes para recargarlos.</p>
+            </div>
+        </div>
+    </section>
+
+   <footer>
+        <p>Hotel Costa Azul © 2026</p>
+        <p>Paseo Marítimo Pablo Ruíz Picasso, Málaga | (+34) 952 31 72 00 | (+34) 615 684 653</p>
+        <p>Email: reservas@hotel-azul.com</p>
+        <br>
+        <p style="font-size: 0.8rem; margin-top: 20px; border-top: 1px solid #444; padding-top: 20px; display: inline-block;">
+            <a href="proyecto.html" style="color: #666; text-decoration: none; border-bottom: 1px dotted #666;">
+                👨‍💻 Proyecto Educativo por Agustín Linares Carrera
+            </a>
+        </p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación Técnica | Chatbot Hotel</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%231a1a1a%22 rx=%2220%22/><text y=%22.9em%22 x=%2250%22 text-anchor=%22middle%22 font-family=%22serif%22 font-weight=%22bold%22 font-size=%2260%22 fill=%22white%22>CA</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-bg: #f4f4f4;
+            --font-titles: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --font-code: 'Fira Code', monospace;
+        }
+
+        body {
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-bg);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        header h1 { margin: 0; font-family: var(--font-titles); font-size: 2.5rem; }
+        header p { opacity: 0.8; margin-top: 10px; font-weight: 300; letter-spacing: 1px;}
+        
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 20px;
+            border: 1px solid white;
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+        .btn-back:hover { background: white; color: var(--color-primary); }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .intro-box {
+            background: white;
+            padding: 30px;
+            border-left: 5px solid var(--color-primary);
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* ESTILOS DE LAS TARJETAS DE INTENTS */
+        .intent-card {
+            background: white;
+            border: 1px solid #ddd;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .intent-header {
+            background: #e0e0e0;
+            padding: 15px 25px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .intent-name {
+            font-family: var(--font-code);
+            font-weight: bold;
+            color: var(--color-primary);
+            font-size: 1.1rem;
+        }
+        .tag {
+            background: var(--color-primary);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .intent-body {
+            padding: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .intent-body { grid-template-columns: 1fr; }
+        }
+
+        h4 { margin-top: 0; color: #666; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #eee; padding-bottom: 10px;}
+
+        /* Lista de frases */
+        ul.phrases {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.9rem;
+            color: #444;
+        }
+        ul.phrases li {
+            padding: 5px 0;
+            border-bottom: 1px dotted #eee;
+        }
+        ul.phrases li::before { content: "💬 "; }
+
+        /* Bloque de código JSON */
+        .json-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            overflow-x: auto;
+            max-height: 300px; /* Scroll si es muy largo */
+            overflow-y: auto;
+        }
+
+        /* Sintaxis simple para JSON */
+        .key { color: #e06c75; }
+        .string { color: #98c379; }
+        .number { color: #d19a66; }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Documentación Técnica</h1>
+        <p>Arquitectura conversacional del Chatbot "Costa Azul de Málaga"</p>
+        <a href="index.html" class="btn-back">← Volver a la Web del Hotel</a>
+    </header>
+
+    <div class="container">
+
+        <div class="intro-box">
+            <h3 style="margin-top:0">Sobre este proyecto</h3>
+            <p>Esta página detalla la estructura lógica creada en <strong>Landbot</strong> para el asistente virtual del Hotel malagueño. El sistema utiliza procesamiento de lenguaje directo y con ciertos chascarrillos mediante <strong>bloques de mensajes y uniéndolos mediante nodos</strong> y con ciertos elementos de multimedia.</p>
+        </div>
+
+        <div class="intent-card">
+            <div class="intent-header">
+                <span class="intent-name">Esquema de Chatbot</span>
+                <span class="tag">Información</span>
+            </div>
+                <div>
+                    <h4>Frases de peticion de dudas (Input)</h4>
+                    <ul class="inputs">
+                        <li>Información básica del de las habitaciones</li>
+                        <li>¿Cuál es el horario de entrada al hotel?</li>
+                        <li>¿Existe parking en el hotel?</li>
+                        <li>¿Tiene wifi el hotel?</li>
+                        <li>¿Tiene desayuno y a qué hora abre el restaurante?</li>
+                        <li>¿Aceptan mascotas?</li>
+                        <li>¿Tiene piscina, spa, gimnasio, etc?</li>
+                        <li>¿Qué recomiendas ver en Málaga?</li>
+                        <li>¿Qué recomiendas a la hora de comer?</li>
+                        <li>hablar con un agente</li>
+                            <ul>
+                                <li>¡Es urgente!</li>
+                                <li>Política de cancelación</li>
+                            </ul>
+                        <li>Hago un reformulamiento si necesita más consultas</li>
+                            <ul>
+                                <li>Si -> vuelve al menú inicial de las consultas</li>
+                                <li>No -> realizo despedida</li>
+                            </ul>
+                            
+                    </ul>
+                </div>
+                    <h4>Respuesta Visual Landbot</h4>
+                    <img src="Images/Arquitectura landbot hotel costa azul málaga.png" >
+                </div>    
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Documentación generada manuelmente mediante las herramientas citadas y con el compilador Microsoft Visual Code.</p>
+        <p>2026</p>
+    </footer>
+
+</body>
+</html>

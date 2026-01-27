@@ -139,8 +139,8 @@ Hotel Costa Azul demuestra cómo la combinación de diseño web, UX conversacion
 
 ✔ Mejora de la experiencia del usuario
 ✔ Atención inmediata y constante
-
-👤 Agustín Linares Carrera 📱 Proyecto desarrollado como parte de un aprendizaje intensivo de Digitalización de sectores productivos
 ✔ Reducción de carga operativa
 ✔ Diseño alineado con una marca de lujo
 ✔ Proyecto escalable y aplicable al mundo real
+
+👤 Agustín Linares Carrera 📱 Proyecto desarrollado como parte de un aprendizaje intensivo de Digitalización de sectores productivos
